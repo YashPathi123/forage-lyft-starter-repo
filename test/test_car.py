@@ -1,11 +1,13 @@
 import unittest
 from datetime import datetime
 
-from engine.model.calliope import Calliope
-from engine.model.glissade import Glissade
-from engine.model.palindrome import Palindrome
-from engine.model.rorschach import Rorschach
-from engine.model.thovex import Thovex
+# from engine.model.calliope import Calliope
+# from engine.model.glissade import Glissade
+# from engine.model.palindrome import Palindrome
+# from engine.model.rorschach import Rorschach
+# from engine.model.thovex import Thovex
+
+from carfactory import CarFactory
 
 
 class TestCalliope(unittest.TestCase):
@@ -15,8 +17,8 @@ class TestCalliope(unittest.TestCase):
         current_mileage = 0
         last_service_mileage = 0
 
-        car = Calliope(last_service_date, current_mileage, last_service_mileage)
-        self.assertTrue(car.needs_service())
+        car = CarFactory(last_service_date, current_mileage, last_service_mileage)
+        self.assertTrue(car.create_calliope())
 
     def test_battery_should_not_be_serviced(self):
         today = datetime.today().date()
