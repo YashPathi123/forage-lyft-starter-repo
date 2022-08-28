@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from battery.battery import Battery
 
 
@@ -7,4 +9,8 @@ class SpindlerBattery(Battery):
         self.current_date = current_date
 
     def needs_service(self):
-        return self.current_date - self.last_service_date >= 2*365
+        nextservicedate = self.last_service_date + timedelta(3 * 365)
+        if nextservicedate <= self.current_date:
+            return True
+        else:
+            return False

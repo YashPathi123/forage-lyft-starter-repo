@@ -1,4 +1,5 @@
 from battery.battery import Battery
+from datetime import timedelta
 
 
 class NubbinBattery(Battery):
@@ -7,4 +8,8 @@ class NubbinBattery(Battery):
         self.current_date = current_date
 
     def needs_service(self):
-        return self.current_date - self.last_service_date >= 4*365
+        nextservicedate = self.last_service_date + timedelta(4 * 365)
+        if nextservicedate <= self.current_date:
+            return True
+        else:
+            return False
